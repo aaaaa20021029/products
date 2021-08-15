@@ -1,12 +1,22 @@
-#讀取檔案
+import os # operating system 作業系統
+
+# 讀取檔案
+# path 路徑(模組)
+# isfile() 'path'裡面的尋找檔案功能
 products = []
-with open('products.csv', 'r') as f:
-	for line in f:
-		if '商品,價格' in line:
-			continue # 繼續 把下面的跳過 直接繼續下一廻廻圈
-		name, price = line.strip().split(',') # .strip 把換行(/n)去掉    # split 切一刀分隔開
-		products.append([name, price])
-print(products)
+print('正在尋找檔案:products.csv')
+if os.path.isfile('products.csv'): # 檢查檔案在不在
+	print('找到檔案了!')
+	with open('products.csv', 'r') as f:
+		for line in f:
+			if '商品,價格' in line:
+				continue # 繼續 把下面的跳過 直接繼續下一廻廻圈
+			name, price = line.strip().split(',') # .strip 把換行(/n)去掉    # split 切一刀分隔開
+			products.append([name, price])
+	print(products)
+else:
+	print('找不到檔案...')
+
 
 # 讓使用者輸入
 while True:
